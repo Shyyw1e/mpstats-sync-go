@@ -1,0 +1,5 @@
+# sheetNumber -> config path
+"1": "configs/1-diapers.yaml"
+"2": "configs/2-wipes.yaml"
+"3": "configs/3-pads.yaml"
+"4": "configs/4-disposable-pants.yaml"
