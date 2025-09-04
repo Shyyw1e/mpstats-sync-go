@@ -19,18 +19,18 @@ type CategoryConfig struct {
 var sheets map[string]string
 
 func init() {
-	b, err := os.ReadFile("configs/sheets.yaml")
-	if err != nil {
-		logger.Log.Errorf("failed to read .yaml file: %v", err)
-		sheets = map[string]string{}
-		return
-	}
-
-	err = yaml.Unmarshal(b, &sheets)
-	if err != nil {
-		logger.Log.Errorf("failed to unmarshal yaml: %v", err)
-		return
-	}
+    b, err := os.ReadFile("configs/sheets.yaml")
+    if err != nil {
+        // нельзя logger.Log здесь — он еще nil
+        fmt.Fprintf(os.Stderr, "failed to read .yaml file: %v\n", err)
+        sheets = map[string]string{}
+        return
+    }
+    if err := yaml.Unmarshal(b, &sheets); err != nil {
+        fmt.Fprintf(os.Stderr, "failed to unmarshal yaml: %v\n", err)
+        sheets = map[string]string{}
+        return
+    }
 }
 
 func LoadBySlug(slug string) (CategoryConfig, error) {
