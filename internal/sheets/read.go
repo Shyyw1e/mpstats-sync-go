@@ -34,3 +34,4 @@ func (c *Client) ReadColumn(ctx context.Context, sheet string) ([]string, error)
 	logger.Log.Infof("Read sku column.\tGot skus:%v", len(out))
 	return out, nil
 }
+
