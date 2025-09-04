@@ -30,11 +30,12 @@ func main() {
 	r.Get("/debug/extract", api.HandleDebugExtract)
 	r.Get("/debug/sheets", api.HandleDebugSheets)
 	// Заготовка под боевой запуск задачи
-	r.Post("/sync/{slug}", api.HandleStartSync)
+	r.Post("/sync/{slug}", api.HandleSync)
 
-	addr := ":" + getenv("PORT", "8080")
-	logger.Log.Infof("HTTP on %s", addr)
-	logger.Log.Fatal(http.ListenAndServe(addr, r))
+	if err := http.ListenAndServe(":8080", r); err != nil {
+		logger.Log.Fatalf("listen: %v", err)
+	}
+	logger.Log.Info("Listening at :8080")
 }
 
 func getenv(k, def string) string {
