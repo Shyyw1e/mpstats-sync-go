@@ -1,0 +1,16 @@
+.git
+**/*.log
+.env
+*.env
+*.local
+.idea
+.vscode
+__pycache__/
+*.pyc
+node_modules
+*.json
+credentials/
+secrets/
+bin/
+dist/
+build/

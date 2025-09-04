@@ -1,0 +1,9 @@
+services:
+  mpstats-sync:
+    image: mpstats-sync:latest
+    env_file:
+      - .env
+    volumes:
+      - ./configs:/app/configs
+    ports:
+      - "8080:8080"
